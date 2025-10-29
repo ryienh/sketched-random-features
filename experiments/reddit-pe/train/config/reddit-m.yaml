@@ -1,0 +1,22 @@
+dataset: REDDIT-MULTI-5K
+model:
+  n_out: 5
+  num_layers: 6
+  num_layers_pe: 8
+  hidden_size_3d: 64
+  hidden_size: 128
+  pool: add
+  method: sketch
+  sketch_type: rbf
+train:
+  epochs: 330
+  runs: 10
+  batch_size: 32
+num_samples: 40
+test_samples: 200
+runs: 1-6
+wandb: True
+run_name: MULTI100-4:128
+project_name: Reddit-M
+sketch_width: 64
+sketch_k: 8

@@ -1,0 +1,2 @@
+### Attribution
+As described in the main `README.md`, our code builds on many prior repositories, where we have edited/exended existing code as necessary. This subdirectory is primarily based on the [[Pearl repo](https://github.com/ehejin/Pearl-PE)] by Kanatsoulis et al., 2025, which in turn uses code from [[SignNet repo](https://github.com/cptq/SignNet-BasisNet)] by Lim et al., 2022; and the [[SPE repo](https://github.com/Graph-COM/SPE)] by Huang et al., 2024.
