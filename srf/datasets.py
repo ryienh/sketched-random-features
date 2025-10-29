@@ -14,9 +14,6 @@ from preprocess import AddFeaturesTransform
 
 class CastToFloat(BaseTransform):
     def __call__(self, data):
-        # data.x = data.x.float()
-        # if data.edge_attr is not None:
-        #     data.edge_attr = data.edge_attr.float()
         if data.edge_attr is not None and len(data.edge_attr.shape) == 1:
             data.edge_attr = data.edge_attr.unsqueeze(-1)
         return data
@@ -133,7 +130,7 @@ def get_loaders(
         if shuffle_train:
             train_dataset = train_dataset.shuffle()
 
-        input_size = 4  # FIXME: fix hardcode
+        input_size = 4  # csl specific hardcode
         edge_dim = 0  # train_dataset.num_edge_features  # type: ignore
         num_classes = 10  # Graph classification
 

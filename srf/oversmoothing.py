@@ -147,7 +147,7 @@ def plot_oversmoothing_figures(all_energies, k_energies):
         fontweight="bold",
     )
     axes[1].tick_params(axis="both", labelsize=TICK_SIZE)
-    
+
     # Move legend to top right for the second plot
     axes[1].legend(fontsize=LEGEND_SIZE, frameon=True, loc="upper right")
     axes[1].grid(True, which="both", ls="-", alpha=0.2)

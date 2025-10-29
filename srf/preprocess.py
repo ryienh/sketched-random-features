@@ -126,7 +126,7 @@ class AddFeaturesTransform:
             laplace_sketch = S_i_scaled @ Z_laplace
             laplace_parts.append(laplace_sketch)
 
-        # Now concatenate each partial chunk along dim=1 => shape [N, k * D_in = D_out]
+        # Concatenate each partial chunk along dim=1 => shape [N, k * D_in = D_out]
         data.rbf_feats = torch.cat(rbf_parts, dim=1)
         data.linear_feats = torch.cat(linear_parts, dim=1)
         data.laplace_feats = torch.cat(laplace_parts, dim=1)

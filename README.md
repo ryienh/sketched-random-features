@@ -53,7 +53,7 @@ cd srf/bottleneck_gnn
 cat README.md
 ```
 
-To run oversmoothing analysis:
+To run oversmoothing analysis and generate associated figures (Figure 1 in the manuscript):
 
 ```
 cd srf

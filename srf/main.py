@@ -3,7 +3,6 @@ import torch.nn.functional as F
 import torch_geometric  # type: ignore
 import wandb
 from ogb.graphproppred import Evaluator
-from ogb.lsc import PCQM4Mv2Evaluator
 import tqdm
 from sklearn.metrics import average_precision_score
 
@@ -28,7 +27,7 @@ def train_regression(model, loader, optimizer, device, target_idx, ds_name) -> f
     for data in tqdm.tqdm(loader, ncols=50):
         data = data.to(device)
         optimizer.zero_grad()
-        out = model(data)  # Remove squeeze as we might have multiple targets
+        out = model(data)
 
         loss = None
         if ds_name == "qm9":
@@ -184,7 +183,7 @@ def main():
     classification_ds = ["csl", "ogbg-ppa", "ogbg-molhiv", "peptides-func", "reddit-m"]
 
     config = {
-        "dataset_name": "csl",  # "csl", "qm9", "ogbg-ppa", "pcqm4mv2", "ogbg-molhiv", "zinc", "reddit-m"
+        "dataset_name": "csl",  # valid dataset support: "csl", "qm9", "ogbg-ppa", "pcqm4mv2", "ogbg-molhiv", "zinc", "reddit-m"
         "target_idx": TARGET,
         "hidden_size": 250,
         "num_layers": 4,
@@ -192,7 +191,7 @@ def main():
         "use_batch_norm": False,
         "lr": 0.001,
         "epochs": 100,
-        "batch_size": 128,  # 2048
+        "batch_size": 128,
         "seed": 42,
         "wandb_mode": "disabled",  # set to "online" or "disabled"
         # Extra transform params

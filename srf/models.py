@@ -1,11 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch_geometric.nn import GINEConv, GINConv, global_mean_pool, GCNConv, PNAConv  # type: ignore
-from torch_geometric.utils import scatter
+from torch_geometric.nn import GINEConv, GINConv, global_mean_pool, GCNConv  # type: ignore
 from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
-from torch_geometric.utils import degree
-from torch_geometric.datasets import ZINC
 
 
 class GINEGlobalRandom(nn.Module):
@@ -121,9 +118,6 @@ class GINEGlobalRandom(nn.Module):
             data.batch,
         )
 
-        # print("Initial shapes:")
-        # print(f"x: {x.shape}, edge_attr: {edge_attr.shape}")
-
         # Encode atoms and bonds if using molecular graphs
         if self.atom_encoder is not None:
             if self.dataset_type != "zinc":
@@ -136,10 +130,7 @@ class GINEGlobalRandom(nn.Module):
             else:
                 edge_attr = self.bond_encoder(edge_attr)
 
-        # print("After encoding:")
-        # print(f"x: {x.shape}, edge_attr: {edge_attr.shape}")
-
-        # We'll keep track of the node embedding as x_l
+        # Keep track of the node embedding as x_l
         x_l = x
 
         # 1) get random feats
@@ -219,13 +210,6 @@ class GINEGlobalRandom(nn.Module):
 
         # 4) return the hidden representation
         return h
-
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch_geometric.nn import GINEConv, GINConv, global_mean_pool
-from ogb.graphproppred.mol_encoder import AtomEncoder, BondEncoder
 
 
 class GINELaplaceVariant(nn.Module):
